@@ -1,0 +1,74 @@
+
+{% extends 'adbook/home.html' %}
+{% block content %}
+{% load static %}
+ 
+ 
+
+    <style>
+      .divl{
+          height: 90px;
+          width: 100%;
+          background-color: antiquewhite;
+      }
+      .log1{
+          font-size: 20px;
+          padding-left: 500px;
+      }
+      .log2{
+          font-size: 30px;
+  
+          padding-left:500px ;
+      }
+      .log3{
+          
+          padding-left: 500px;
+      }
+      .divl1{
+          padding-left: 300px;
+      }
+      img[alt='pic3']{
+    background-attachment:fixed;
+    height:800px;
+    width:100%;
+      }
+  </style>
+   <div>
+    <img src="{% static 'image/book.png' %}" alt="pic3" >
+
+    
+  <table>
+      <tr>
+          <td class="log1">Home|Login</td>
+      </tr>
+      <tr><td class="log2">Login</td></tr>
+  </table>
+  <div class="divl1">
+      <table class="log3">
+          <tr>
+              <td> Login</td><br/>
+          </tr>
+          <tr><td style="padding-top: 50px;">Email Address</td></tr>
+          <tr><td><hr/></td></tr>
+          <tr><td>Password</td></tr>
+          <tr><td><hr/></td></tr>
+          <tr><td>Phone Number</td></tr>
+          <tr><td><hr/></td></tr>
+          <tr><td>
+          <button>Login </button> </td></tr>
+  
+  
+      </table>
+    </div>
+  
+
+
+    
+  </div>
+
+
+ {% endblock %}
+
+ 
+
+    

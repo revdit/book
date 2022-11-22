@@ -1,0 +1,167 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+<style>
+  .div3{
+    background-color: orangered;
+    height: 50px;
+    width: 100%;
+  }
+  .foot1{
+    padding-left: 60px;
+  }
+  .foot2{
+    padding-left: 60px;
+  }
+  img[alt='pic5']{
+    height: 20px;
+    width:20px;
+    padding-left: 10px;
+}
+img[alt='pic1']{
+    height: 90px;
+    width: 200px;
+    padding-left: 80px;
+}
+img[alt='pic2']{
+    height: 40px;
+    width: 20px;
+}
+</style>
+  </head>
+<body>
+  <div class="div1">
+  <table>
+    <tr>
+ 
+<td class="td1"><a href="{% url 'home' %}"><img src="{% static 'image/lib.jpg'%}" alt="pic1"> </a></td>
+<td class="td1"><a href="{% url 'book' %}" style="color:white;"> <b id="t2"> Books </b> </a></td>
+<td class="td1"><a href="{% url 'author' %}" style="color:white;"><b id="t2">Authors</b></a></td>
+<td class="td1"><a href="{% url 'explore' %}" style="color:white;"><b id="t2">Explore</b></a></td>
+<td class="td1"><a href="{% url 'aboutus' %}" style="color:white;"><b id="t2">About Us</b></a></td>
+<td class="td1"><a href="{% url 'login' %}" style="color:white;"><b id="t2">Login</b></a></td>
+
+<!-- 
+<td> 
+  <select name="" style="color: blue;" id="o1" >
+      <option value="">INTERNSHIP PROGRAMS</option>
+      <option value="python">PYTHON TRANING</option>
+      <option value="php">PHP TRANING</option>
+      <option value="angular">ANGULAR TRANING</option>
+      <option value="flutter">FLUTTER TRANING</option>
+      <option value="web">WEB DEVELOPMENT</option>
+  </select>
+  </td> -->
+
+
+<td class="td1"><a href="{% url 'register' %}" style="color:white;"><b id="t2">Register Now</b></a></td>
+</tr>
+  </table> 
+</div> 
+{% block content %}
+
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="{% static 'image/hp4.jpg'%}" alt="pic3" class="d-block w-100" alt="pic3">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="{% static 'image/hp3.jpg'%}" class="d-block w-100" alt="pic3">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'image/hp2.jpg'%}" class="d-block w-100" alt="pic3">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'image/hp5.jpg'%}" class="d-block w-100" alt="pic3">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'image/hp1.jpg'%}" class="d-block w-100" alt="pic3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div>
+  <p style="font-size: 50px; padding-top:50px ;"> catch up on what we're reading </p>
+  <img src="{% static 'image/audio.png' %}" alt="" style="width: 100%;">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+<div class="div3">
+</div>
+  <table >
+    <tr>
+      <td class="foot1">  ABOUT US <hr/> </td>
+      <td class="foot2">  USEFUL LINKS <hr/> </td>
+      <td class="foot2">  CONNECT WITH US <hr/> </td>
+    </tr>
+    <tr>
+<td class="foot1"> Our Company</td>
+<td class="foot2">Privacy and Cookies Policy</td>
+<td class="foot2">Follow us</td>
+<td rowspan="3"><img src="{% static 'image/lib.jpg'%}" alt="pic1"> <b>CALICUT BOOKS</b></td> 
+
+    </tr>
+    <tr>
+      <td class="foot1">Work With Us</td>
+      <td class="foot2">Terms and Conditions</td>
+      <td class="foot2"> 
+        <img src="{% static 'image/face1.png'%}" alt="pic5">
+        <img src="{% static 'image/insta.png'%}" alt="pic5">  
+        <img src="{% static 'image/twit.png'%}" alt="pic5">
+        <img src="{% static 'image/link.png'%}" alt="pic5">
+      </td>
+    </tr>
+    <tr>
+      <td class="foot1">Publish With Us</td>
+      <td class="foot2">Services for Corporates and institutes</td>
+    </tr>
+    <tr>
+      <td class="foot1">Publishing Houses</td>
+    </tr>
+    <tr>
+      <td class="foot1">Corporate Social Responsibility</td>
+     <td class="foot2"> Contact Us  </td>
+
+    </tr>
+    <tr><td class="foot1">
+      News Room
+    </td>
+  <td class="foot2">FAQ</td>
+</tr>
+
+  </table>
+
+
+
+</body>
+</html>
