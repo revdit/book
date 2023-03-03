@@ -1,0 +1,32 @@
+{% extends 'adbook/home.html' %}
+{% load static %}
+{% block content %}
+
+    
+<div class="col-10 col-sm-8 col-md-6 m-auto">
+    <div class="card shadow border">
+        <div class="card-body">
+            <h3>Author Registration</h3>
+            <form method='POST' enctype = 'multipart/form-data'>
+                {% csrf_token %} 
+                {{ msg }}
+                 <div class="mb-3">
+                <label for="exampleFormControlInput1"class="form-label">Author Name</label>
+                <input type="text" name="a_name"  class="form-control"id="productno">
+               </div>        
+                
+            <div class="mb-3">
+                <label for="formfile"class="form-label">Author image</label>
+                <input type="file" name="a_img"  class="form-control"id="exampleFormControlInput1">
+          
+            <button type="submit" class="btn btn-primary">Add Author</button>
+            
+        </form>
+            
+
+    </div>
+</div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,208 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+{% block header %}
+{% endblock %}
+<style>
+  .div3{
+    background-color: orangered;
+    height: 50px;
+    width: 100%;
+  }
+  .foot1{
+    padding-left: 60px;
+  }
+  .foot2{
+    padding-left: 60px;
+  }
+  img[alt='pic5']{
+    height: 20px;
+    width:20px;
+    padding-left: 10px;
+}
+img[alt='pic1']{
+    height: 90px;
+    width: 200px;
+    padding-left: 80px;
+}
+img[alt='pic2']{
+    height: 40px;
+    width: 20px;
+}
+.div4
+{
+  background-color: white; 
+  height: 300px;
+  width: 100%;
+
+}
+img[alt='pic4']{
+    height: 200px;
+    width: 300px;
+}
+.maindiv
+{
+  background-color: rgb(226, 223, 223);
+  height: 500%;
+  width: 100%;
+}
+#id1
+{
+  font-size: 30px;
+
+}
+#id1:hover{
+    color: red;
+}
+img[alt='pics1']{
+    height: 200px;
+    width: 200px;
+}
+
+</style>
+  </head>
+<body>
+  
+<nav>
+  <div class="container navbar">
+    <div class="logo">
+     
+      <a href="#">BookStore</a> 
+    </div>
+    
+    <div class="menu">
+      <input type="checkbox" id="checking">
+      <label for="checking">
+        <i class="fas fa-bars"></i>
+      </label>
+      <ul>
+
+
+      <li> <a href="{% url 'adbook:addbook' %}">Register Book</a></li>
+      <li> <a href="{% url 'adbook:author' %}">Authors</a></li>
+      <li> <a href="{% url 'adbook:order' %}">Order</a></li>
+      <li> <a href="{% url 'adbook:updatestock' %}">Update UpdateStock</a></li>
+      <li> <a href="{% url 'adbook:catlog' %}">Catalogue</a></li>
+      <li> <a href="{% url 'common:adminlog' %}">Logout</a></li>
+
+      
+      </ul>
+    </div>
+  
+    </div>
+  </nav> 
+
+
+
+
+
+{% block content %}
+
+
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="{% static 'image/hp4.jpg'%}" alt="pic3" class="d-block w-100" alt="pic3">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="{% static 'image/hp3.jpg'%}" class="d-block w-100" alt="pic3">
+    </div>
+   
+    <div class="carousel-item">
+      <img src="{% static 'image/hp1.jpg'%}" class="d-block w-100" alt="pic3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+          
+        </p>
+        <p id="p1">Follow Us on Social Media </p><hr>
+        <img src="{% static 'image/libface.png'%}" alt="" height="50px" width="50px">
+        <img src="{% static 'image/libtwit.png'%}" alt="" height="50px" width="50px">
+        <img src="{% static 'image/libinsta.jpg'%}" alt="" height="50px" width="50px">
+
+
+
+
+
+
+
+    </div>
+
+
+
+  </div>
+</div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+<div class="div3">
+</div>
+<div class="div4">
+
+  <img src="{% static 'image/libfoot.png'%}" alt="pic4">
+  <img src="{% static 'image/litfoot.png'%}" alt="pic4">
+  <img src="{% static 'image/footfirst.png'%}" alt="pic4">
+  <img src="{% static 'image/footsec.png'%}" alt="pic4">
+
+
+</div><hr>
+<div>
+  <table>
+    <tr>
+      <td class="foot1" style="padding-left: 400px;">Hours & Store Info  | Contact Us | Privacy Policy | Return Policy | Help </td>
+    
+       <td rowspan="4"><img src="{% static 'image/lib.jpg'%}" alt="pic1"> <b>CALICUT BOOKS</b></td> 
+
+      </tr>
+      <tr>
+        <td class="foot1" style="padding-left: 400px;">Calicut Books Kerala Kozhikode Pantheerankave near Police station</td>
+      </tr>
+      <tr>
+        <td class="foot1" style="padding-left: 500px;">Copyright @ Calicut BookShop</td>
+       </tr>
+       <tr>
+        <td class="foot1" style="padding-left: 400px;">If you need assistance with this website, please contact us.</td>
+       </tr>
+  </table>
+</div>
+</body>
+</html>

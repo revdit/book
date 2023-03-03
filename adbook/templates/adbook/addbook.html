@@ -1,0 +1,81 @@
+
+{% extends 'adbook/home.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<div class="col-10 col-sm-8 col-md-6 m-auto">
+    <div class="card shadow border">
+        <div class="card-body">
+            <h3>Add Product</h3>
+            <form method='POST' enctype = 'multipart/form-data'>
+                {% csrf_token %} 
+                {{ msg }}
+                 <div class="mb-3">
+                <label for="exampleFormControlInput1"class="form-label">Book Number</label>
+                <input type="number" name="p_num"  class="form-control"id="productno">
+               </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1"class="form-label">Book Name</label>
+                    <input type="name" name="p_name" class="form-control"id="exampleFormControlInput1">
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1"class="form-label">Book Description</label>
+                    <textarea class="form-control" name="p_des" id="exampleFormControlInput1"rows="3"></textarea>
+               </div>
+              
+               <div class="mb-3">
+                    <label for="exampleFormControlInput1"class="form-label">Author Name</label>
+                    <select class="form-select form-select-lg mb-3" id="author" name="a_name" aria-label=".form-select-lg example">
+                    <option selected>Select Author</option>
+                    {% for authors in author %}
+
+                    <option value="{{authors.id}}">{{authors.author_name}}</option>
+                    {% endfor %}
+                   
+                  </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1"class="form-label">Language</label>
+                    <select class="form-select form-select-lg mb-3"   name="l_name" aria-label=".form-select-lg example">
+                        <option selected>Select Language</option>
+                        <option value="1">English</option>
+                        <option value="2">Malayalam</option>
+                       
+                      </select>
+                    </div>
+                      
+              
+            <div class="mb-3">
+                <label for="exampleFormControlInput1"class="form-label">Current Stock</label>
+                <input type="name" name="stock"  class="form-control"id="exampleFormControlInput1">
+            </div> 
+      
+        <div class="mb-3">
+            <label for="exampleFormControlInput1"class="form-label">Price</label>
+            <input type="name" name="price" class="form-control"id="exampleFormControlInput1">
+
+        </div>
+            <div class="mb-3">
+                <label for="formfile"class="form-label">Productimage</label>
+                <input type="file" name="p_img"  class="form-control"id="exampleFormControlInput1">
+            
+    </div>
+            
+            <div style="padding-left: 200px;">
+                <button type="submit" class="btn btn-primary"  >Add Product</button>
+
+            </div>
+</form>
+            </div>
+        </div>  
+</div>
+
+
+
+
+
+{% endblock %}

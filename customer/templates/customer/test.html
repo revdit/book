@@ -1,0 +1,198 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/card.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+  </head>
+<style>
+
+.cust2{
+    background-color:rgb(15, 3, 61);
+    height: 50px;
+    width: 100%;
+}
+.list{
+    color: rgb(49, 30, 68);
+
+}
+img[alt='pic1']{
+    height: 90px;
+    width:100px;
+   
+}
+
+.td1{
+    padding-left: 50px;
+    padding-top: 10px;
+   
+}
+img[alt='pro']{
+    height: 30px;
+    width:50px;
+   
+}
+.h4{
+    padding-left: 400px;
+    color: white;
+}
+.btn2{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: #625e68;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    padding-left: 500px;
+}
+.div3{
+    background-color: rgb(29, 21, 43);
+    height: 50px;
+    width: 100%;
+    
+  }
+  .a1{
+    text-decoration: none;
+    color: white;
+    padding-left: 600px;
+    
+    
+
+  }
+  .foot1{
+    padding-left: 100px;
+    color: white;
+  }
+  .foot2{
+    padding-left: 100px;
+    color: white;
+  }
+ 
+  .div4{
+    
+    width: 100%;
+    background-color: rgb(15, 15, 41);
+  }
+</style>
+<body>
+    <div class="cust2">
+    
+        <table>
+            <tr> 
+              <td class="td1"> <a href="#"style="text-decoration: none;color:white;"><b> Calicut Books</b> </a> </td>
+
+                <td class="td1"> <a href="{% url 'customer:custhome' %}" style="text-decoration: none;color: white; padding-left: 100px;">Home</a></td>
+                <td class="td1"> <a href="{% url 'customer:myorder' %}" style="text-decoration: none;color: white;">Order</a></td>
+                <td class="td1"> <a href="{% url 'customer:cart' %}" style="text-decoration: none;color: white;">Cart</a></td>
+                <td class="td1"> <a href="{% url 'customer:profile' %}" style="text-decoration: none;color: white;">Profile</a></td>
+                <td class="td1"> <a href="{% url 'common:custlogin' %}" style="text-decoration: none;color: white;">Logout</a></td>
+               
+                {% block name %}
+ 
+   
+                 {% endblock %}
+            </tr>
+        </table>
+        
+
+          </div>
+        
+          <div class="row">
+            <div class="col-md-2" style="background-color: rgb(166, 169, 177); height: 700px;">
+              
+            <table>
+              <tr>
+              <td class="td1"> <a href="{% url 'customer:custhome' %}" style="text-decoration: none;color: rgb(15, 24, 104);">DashBoard</a></td>
+
+              </tr>
+              <tr>
+                <td class="td1"> <a href="{% url 'customer:custhome' %}" style="text-decoration: none;color: rgb(15, 24, 104);">View Product</a></td></tr>
+                <tr>
+                  <td class="td1"> <a href="{% url 'customer:changepass' %}" style="text-decoration: none;color: rgb(15, 24, 104);">Change Password</a></td>
+
+                </tr>
+                <tr>
+                  <td class="td1"> <a href="{% url 'customer:myorder' %}" style="text-decoration: none;color: rgb(15, 24, 104);">MyOrder</a></td>
+
+                </tr>
+                <tr>
+                  <td class="td1"> <a href="{% url 'customer:author' %}" style="text-decoration: none;color: rgb(15, 24, 104);">Author</a></td>
+
+                </tr>
+
+              </tr>
+            </table>
+            </div>
+            {% block content %}
+            
+          
+              {% endblock %}
+       <div class="container" style="width:100%">
+        <div class="row">
+          <div class="col sm 12">
+           
+            <div class="div3">
+
+              <a href="{% url 'customer:custhome' %}" class="a1">Back To Top</a>
+            </div>
+            <div class="div4">
+              <table  class="tb1">
+                <tr>
+                  <td class="foot1">  ABOUT US <hr/> </td>
+                  <td class="foot2">  USEFUL LINKS <hr/> </td>
+                  <td class="foot2">  CONNECT WITH US <hr/> </td>
+                  <td  class="foot2"></td>
+                </tr>
+                <tr>
+            <td class="foot1"> Our Company</td>
+            <td class="foot2">Privacy and Cookies Policy</td>
+            <td class="foot2">Follow us</td>
+            
+                </tr>
+                <tr>
+                  <td class="foot1">Work With Us</td>
+                  <td class="foot2">Terms and Conditions</td>
+                  <td class="foot2">Facebook</td>
+                
+                   </tr>
+                <tr>
+                  <td class="foot1">Publish With Us</td>
+                  <td class="foot2">Services for Corporates and institutes</td>
+                  <td class="foot2">Twitter</td>
+
+                </tr>
+                <tr>
+                  <td class="foot1">Publishing Houses</td>
+                  <td class="foot2">Instagram</td>
+
+                </tr>
+                <tr>
+                  <td class="foot1">Corporate Social Responsibility</td>
+                 <td class="foot2"> Contact Us  </td>
+            
+                </tr>
+                <tr><td class="foot1">
+                  News Room
+                </td>
+              <td class="foot2">FAQ</td>
+            </tr>
+          </table>
+            
+             
+          </div>
+        </div>
+
+       </div>
+      </div>
+     
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends 'adbook/home.html' %}
+{% block content %}
+{% load static %}
+<div class="col-sm-10" >
+    <div class="row">
+      {% for product in products %}
+      <div class="col-md-3 mt-3" >
+        <div class="card shadow border mt-3  h-100">
+          <div class="product align-items-center p-2 text-center">
+            <img src="{{product.image.url}}" alt="" class="rounded" width="160" height="140">
+            <h5>{{product.product_name|title}}</h5>
+          </div>
+          <div class="mt-3 info text-center">
+            <span class="text d-block">{{product.product_description}}</span>
+          </div>
+          <div class="cost mt-3 text-dark text-center">
+            <span>{{product.price}}</span>
+
+          </div >
+        <div style="margin-top: auto; padding-left: 100px;">
+          <button type="button" class="btn btn-danger" > <a href="{% url 'adbook:proddet' product.id %}"style="text-decoration:none; color:white;"> View </a>  </button>
+
+        </div>
+
+      
+        </div>
+
+      </div>
+      <br>
+      
+ 
+    
+      {% endfor %}
+    </div>
+    </div>
+    <br><br>
+  
+{% endblock %}

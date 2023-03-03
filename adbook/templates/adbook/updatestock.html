@@ -1,0 +1,68 @@
+{% extends 'adbook/home.html' %}
+{% load static %}
+{% block content %}
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-7 m-auto mt-5">
+                <div class="card shadow border">
+                    <div class="card-body w-100">
+                        <h3>UPDATE STOCK</h3>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="number" id="p_id" name="productid">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Product name</label>
+                                <select id="productno" class="form-select" aria-label="Default select example">
+                                    <option  selected>Select a  Product to update</option>
+                                    {% for product in prod_data %}
+                                    <option value="{{product.id}}">{{product.product_name}}</option>
+                                    {% endfor %}
+                                </select></div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Current Stock</label>
+                            <input type="name"  readonly class="form-control" id="c_stock">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">New Stock</label>
+                            <input type="name" name="new_stock" value='0' class="form-control" id="n_stock">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Total Price</label>
+                            <input type="name" name="new_price" class="form-control" id="c_price">
+                        </div>
+                        <div class="mb-3"style="padding-left:250px;">
+                             <button class="btn btn-secondary" type="submit" >Update stock</button>   
+                        </div>
+                        {{msg}}
+                        </form>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#productno').change(function(){
+            $.ajaxSetup({
+                headers:{
+                    "X-CSRFToken":$('[name=csrfmiddlewaretoken]').val()
+
+                }
+            })
+            
+            $.ajax({
+                url:'{% url "adbook:get_stock" %}',
+                type:'POST',
+                data:{
+                  id:$(this).val()
+
+                },
+                success:function(response){
+                    $('#c_stock').val(response.stock)
+                    $('#p_id').val(response.pro_id)
+                    $('#c_price').val(response.p_price)
+                }
+            })
+        })
+    </script>
+{% endblock %}
+    

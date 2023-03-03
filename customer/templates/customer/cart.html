@@ -1,0 +1,78 @@
+{% extends 'customer/userhome.html' %}
+{% load static %}
+{% block name %}
+ <h4 > Welcome {{data.customer_name|title}}
+</h4>
+   
+{% endblock %}
+{% block content %}
+<div class="col-md-10 mt-3"style="padding-left: 200px;">
+
+ <table class="table table-dark table-striped text-center table-hover">
+    <tr>
+      <th>Sl.No</th>
+      <th>ProductImage</th>
+      <th>ProductName</th>
+      <th id="price">Price</th>
+      <th id="qty">Quantity</th>
+      <th>TotalPrice</th>
+      <th>Action</th>
+      
+
+
+    </tr>
+    {% for cart in cart_list %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>
+        <img src=" {{cart.Product.image.url}}" style="height: 50px; width: 50px;" class="rounded" alt="...">
+      </td>
+      <td>{{cart.Product.product_name}}</td>
+      <td>{{cart.Product.price}}</td>
+      <td>
+        <input type="number" value="1" max="{{cart.Product.stock}}"
+          onchange="addEventListener('change',calculateTotal(event))">
+      </td>
+      <td>{{cart.Product.price}}</td>
+      <td><button class="btn btn-danger">
+          <a href="{% url 'customer:remove_cart' cart.Product.id %}"
+            style="color: aliceblue; text-decoration: none;">REMOVE</a>
+
+        </button>
+      </td>  
+         
+    </tr>
+
+   {% endfor %}
+  </table>
+
+  <div style="padding-left: 800px;">
+    <button type="button" class="btn btn-dark"> 
+      Grand Total</a></button>
+
+    </div>
+    <br>
+    <div style="padding-left: 800px;">
+    <button type="button" class="btn btn-dark"> <a href="{% url 'customer:checkout'%}"
+      style="color: aliceblue; text-decoration: none;">Check Out</a></button>
+
+  </div>
+  
+</div>
+
+
+  <script>
+
+    function calculateTotal(e) {
+      //alert(e.target.parentElement.parentElement.childNodes)
+      var qty = e.target.value
+      tdlist = e.target.parentElement.parentElement.childNodes
+      price = tdlist[7].innerHTML
+      total = parseFloat(price) * parseInt(qty)
+      tdlist[11].innerHTML = total
+      console.log(e.target.parentElement.parentElement.childNodes)
+
+    }
+
+  </script>
+  {% endblock %}

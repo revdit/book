@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500;1,700&display=swap');
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Roboto',sans-serif;
+}
+nav{
+    height: 80px;
+    background: #000;
+
+}
+nav .container{
+    margin: 0 auto;
+
+max-width: 1100px;
+}
+nav .navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 50px;
+    height: 100%;
+
+}
+nav .logo a{
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+
+
+}
+nav .menu ul{
+    display: flex;
+}
+nav .menu ul li{
+    list-style: none;
+    margin: 0 15px;
+}
+nav .menu ul li a{
+    text-decoration: none;
+    font-size: 17px;
+    color: #fff;
+    font-weight: 400;
+    transition: all 400ms;
+    letter-spacing: 1px;
+}
+nav .menu ul li a:hover{
+    padding: 10px;
+    background: #fff;
+    color: #000;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-weight: 500;
+}
+label{
+    display: none;
+}
+
+label i{
+    color: #fff;
+    font-size: 25px;
+}
+#checking{
+    display: none;
+ }
+  
+
+
+/* making nav bar responsive */
+
+@media(max-width:830px){
+    nav .menu ul{
+        position:fixed;
+        top: 80px;
+        left:-100%;
+        background: #333;
+        height: 100vh;
+        width:100%;
+        display: block;
+        text-align: center;
+        transition: all 400ms;
+
+    }
+    nav .menu ul li{
+        margin: 20px 0;
+    }
+    nav .menu ul li a{
+        font-size: 25px;
+    }
+    nav .menu ul li a:hover{
+        padding: unset;
+        background:unset;
+        color: green;
+        border: unset;
+        outline: unset;
+        border-radius: unset;
+        font-weight: unset;
+    }
+    label{
+        display: block;
+    }
+    
+    #checking:checked ~ ul{
+        left: 0%
+    }
+    #checking:checked ~ label i::before{
+        content: '\f00d';
+    }
+}

@@ -1,0 +1,40 @@
+{% extends 'customer/userhome.html' %}
+{% load static %}
+{% block name %}
+ <h4 > Welcome {{data.customer_name|title}}
+</h4>
+   
+{% endblock %}
+{% block content %}
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-7 m-auto mt-5">
+                <div class="card shadow border">
+                    <div class="card-body w-100">
+                        <h3>CHANGE PASSWORD</h3>
+                        <form method="POST">
+                            {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Current Password</label>
+                            <input type="name" name="current_pass" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">New Password</label>
+                            <input type="name" name="new_pass" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+                            <input type="name" name="confirm_pass" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                        <div class="mb-3"style="padding-left:250px;">
+                             <button class="btn btn-secondary" type="submit" >Change</button>   
+                        </div>
+                        {{msg}}
+                        </form>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    

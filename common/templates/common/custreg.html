@@ -1,0 +1,103 @@
+{% extends 'common/commonhome.html' %}
+{% block content %}
+{% load static %}
+
+
+
+
+
+
+
+<section class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card card-registration my-4">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                  alt="Sample photo" class="img-fluid"
+                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <h3 class="mb-5 text-uppercase">CUSTOMER REGISTRATION FORM</h3>
+                  <form method="POST">
+                    {% csrf_token %}
+                    {{ msg }}
+                  <div class="row">
+                    <div class="col-md-12 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example1m" name="c_name"class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example1m">Name</label>
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example1n" name="c_address" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example1n">Address</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example1m1"name="c_phone" class="form-control form-control-lg" />
+                        <label class="form-label"  for="form3Example1m1">Phonenumber</label>
+                      </div>
+                    </div>
+                      
+                  <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+  
+                    <h6 class="mb-0 me-4">Gender: </h6>
+  
+                    <div class="form-check form-check-inline mb-0 me-4">
+                      <input class="form-check-input" type="radio" name="c_gender" id="femaleGender"
+                        value="femail" />
+                      <label class="form-check-label" for="femaleGender">Female</label>
+                    </div>
+  
+                    <div class="form-check form-check-inline mb-0 me-4">
+                      <input class="form-check-input" type="radio" name="c_gender" id="maleGender"
+                        value="male" />
+                      <label class="form-check-label" for="maleGender">Male</label>
+                    </div>
+  
+                    <div class="form-check form-check-inline mb-0">
+                      <input class="form-check-input" type="radio" name="c_gender" id="otherGender"
+                        value="option3" />
+                      <label class="form-check-label" for="otherGender">Other</label>
+                    </div>
+  
+                  </div>
+                    
+                  <div class="form-outline mb-4">
+                    <input type="text" id="form3Example97" name="c_email"class="form-control form-control-lg" />
+                    <label class="form-label" for="form3Example97">Email ID</label>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="password" id="form3Example97" name="c_password"class="form-control form-control-lg" />
+                    <label class="form-label" for="form3Example97">Password</label>
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                  <div class="d-flex justify-content-end pt-3">
+                    <p>Already have an account?
+                    <a href="{% url 'common:custlogin' %}" >Click here</a></p>
+                    </div>
+                    
+                  </div>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
