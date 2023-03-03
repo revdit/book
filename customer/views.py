@@ -1,23 +1,35 @@
 from django.shortcuts import render,redirect
 from common.models import Customer,Seller
 from customer.models import Carts,Wishlist
-from adbook.models import Products,Order,Author
+from adbook.models import Order,Productsss,Author
+from django.http import JsonResponse
+
 
 # Create your views here.
 
 
-def customer_custhome(request):
-    print('cust home')
+# def customer_custhome(request):
+#     print('cust home')
+#     cust_data =  Customer.objects.get(id = request.session['customer'])
+#     product_list = Productsss.objects.all()
+
+#     print(product_list)
+
+#     return render(request,'customer/custhome.html',{'data':cust_data,'products': product_list})
+
+
+def customer_userhome(request):
+  
     cust_data =  Customer.objects.get(id = request.session['customer'])
-    product_list = Products.objects.all()
+    product_list = Productsss.objects.all()
 
-    print(product_list)
+  
 
-    return render(request,'customer/custhome.html',{'data':cust_data,'products': product_list})
+    return render(request,'customer/userhome.html',{'data':cust_data,'products': product_list})
 
 def customer_productdetails(request,pid):
     msg=''
-    product_details = Products.objects.get(id = pid)# fetching singledata
+    product_details = Productsss.objects.get(id = pid)# fetching singledata
     if request.method == 'POST':
         product_id = request.POST['pid']
         item_exist =Carts.objects.filter(Product_id = product_id , Customer_id = request.session['customer']).exists()
@@ -174,10 +186,10 @@ def customer_wishlist(request):
 
 def addtowishlist(request,pid):
     msg =""
-    product_details = Products.objects.get(id=pid)
+    product_details = Productsss.objects.get(id=pid)
     product_exist = Wishlist.objects.filter(Product = pid,Customer = request.session['customer']).exists()
     if not product_exist:
-        wish = Wishlist(Customer_id =request.sesssion['customer'],Product_id=pid)
+        wish = Wishlist.objects.filter(Customer_id =request.sesssion['customer'],Product_id=pid)
         wish.save()
     else:
         msg ='Item already in wishlist'

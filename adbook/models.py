@@ -17,7 +17,7 @@ class Author(models.Model):
 
 
 
-class Products(models.Model):
+class Productsss(models.Model):
     seller = models.ForeignKey(Seller,on_delete= models.CASCADE)
     author = models.ForeignKey(Author,on_delete= models.CASCADE,default='')
    
@@ -41,4 +41,4 @@ class Products(models.Model):
 
 class Order(models.Model):
     Customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
-    Product = models.ForeignKey(Products, on_delete= models.CASCADE)
+    Product = models.ForeignKey(Productsss, on_delete= models.CASCADE)

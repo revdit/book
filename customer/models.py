@@ -1,6 +1,6 @@
 from django.db import models
 from common.models import Customer
-from  adbook.models import Products
+from  adbook.models import Productsss
 
 
 # Create your models here.
@@ -9,11 +9,11 @@ from  adbook.models import Products
 
 class Carts(models.Model):
     Customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
-    Product = models.ForeignKey(Products, on_delete= models.CASCADE)
+    Product = models.ForeignKey(Productsss, on_delete= models.CASCADE)
 
 
 class Wishlist(models.Model):
     Customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
-    Product = models.ForeignKey(Products, on_delete= models.CASCADE)
+    Product = models.ForeignKey(Productsss, on_delete= models.CASCADE)
 
 

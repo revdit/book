@@ -1,7 +1,7 @@
 from email.utils import decode_rfc2231
 from django.shortcuts import render,redirect
 from common.models import Customer,Seller
-from adbook.models import Products,Order,Author
+from adbook.models import Order,Author,Productsss
 from django.http import JsonResponse
 
 # Create your views here.
@@ -58,18 +58,20 @@ def adbook_addbook(request):
         auth=Author.objects.get(id=author_name)
       
         
-        new_product = Products(product_name = product_name ,
+        new_product = Productsss(product_name = product_name ,
         product_description = product_description , product_number = product_number ,
         language = language,stock = current_stock ,author_id=auth.id,
         image = product_image ,price = price, seller_id=request.session['seller'])
     
+        
         new_product.save()
+        print(new_product)
         msg = 'Product added succsessfully'
     return render(request,'adbook/addbook.html',{'msg': msg,'data':seller_data,'author':auther})
 
 def adbook_updatestock(request):
     seller_data = Seller.objects.get(id=request.session['seller'])
-    Product_data = Products.objects.filter(seller = request.session['seller'] )
+    Product_data = Productsss.objects.filter(seller = request.session['seller'] )
     if request.method == 'POST':
         new_stock =request.POST['new_stock']
         product_id = request.POST['productid']
@@ -91,7 +93,7 @@ def adbook_order(request):
 
 
 def adbook_catlog(request):
-    seller_products = Products.objects.filter(seller = request.session['seller'])
+    seller_products = Productsss.objects.filter(seller = request.session['seller'])
     seller_data = Seller.objects.get(id=request.session['seller'])
     context ={'products':seller_products,
                 'data': seller_data,
@@ -102,7 +104,7 @@ def adbook_catlog(request):
 def get_stock(request):
     name=request.POST['id']
     
-    product=Products.objects.get(id=id)
+    product=Productsss.objects.get(id=id)
     product_name =product.product_name
     current_stock = product.stock
     price =product.price
@@ -112,12 +114,12 @@ def get_stock(request):
 def adbook_proddet(request,pid):
 
   
-    product_details = Products.objects.get(id = pid)# fetching singledata
+    product_details = Productsss.objects.get(id = pid)# fetching singledata
     
     return render(request,'adbook/proddet.html',{'product':product_details})
 
 def adbook_delete(request,pid):
-    prod_item = Products.objects.get(id = pid)
+    prod_item = Productsss.objects.get(id = pid)
     prod_item.delete()
     return redirect('adbook:catlog')
 

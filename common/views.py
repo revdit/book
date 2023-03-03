@@ -21,7 +21,7 @@ def common_custlogin(request):
             customer = Customer.objects.get(email_address = cust_email, cust_password = cust_password )
             
             request.session['customer'] = customer.id
-            return redirect('customer:custhome')
+            return redirect('customer:userhome')
         except:
             custmsg = 'username or password incorrect'  
             

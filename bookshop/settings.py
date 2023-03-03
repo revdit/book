@@ -81,7 +81,9 @@ WSGI_APPLICATION = 'bookshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'book_shop',
+        # 'NAME': 'book_shop',
+        # 'NAME': 'bookshop1',
+        'NAME': 'bookshop_new',
         'USER':'postgres',
         'PASSWORD':'root',
         'HOST':'localhost',
