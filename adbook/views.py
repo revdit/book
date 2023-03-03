@@ -1,5 +1,8 @@
 from email.utils import decode_rfc2231
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from common.models import Customer,Seller
+from adbook.models import Products,Order,Author
+from django.http import JsonResponse
 
 # Create your views here.
 def adbook_home(request):
@@ -8,19 +11,123 @@ def adbook_home(request):
 def adbook_aboutus(request):
     return render(request,'adbook/aboutus.html')
 
+
 def adbook_author(request):
-    return render(request,'adbook/author.html')
+    # author_data = Author.objects.get(id=request.session['author'])
+    msg = ''
+    if request.method == 'POST' :
+        Author_name = request.POST['a_name']
+        Author_image = request.FILES['a_img']
+        new_author = Author(author_name = Author_name , image = Author_image )
+    
+        new_author.save()
+        msg = 'Author added succsessfully'
 
-def adbook_explore(request):
-    return render(request,'adbook/exlpore.html')
+    return render(request,'adbook/author.html',{'msg': msg})
 
-def adbook_book(request):
-    return render(request,'adbook/book.html')
+
+def adbook_bulkorder(request):
+    
+    return render(request,'adbook/bulkorder.html')
 
     
 def adbook_login(request):
     return render(request,'adbook/login.html')
 
+ 
+def adbook_shop(request):
+    return render(request,'adbook/shop.html')
+
+def adbook_master(request):
+    return render(request,'adbook/master.html')
+
+def adbook_addbook(request):
+    seller_data = Seller.objects.get(id=request.session['seller'])
+    msg = ''
+    auther=Author.objects.all()
+    if request.method == 'POST' :
+        product_name = request.POST['p_name']
+        product_description = request.POST['p_des']
+        product_number = request.POST['p_num']
+        author_name =request.POST['a_name']
+        language= request.POST['l_name']
+        current_stock = request.POST['stock']
+        product_image = request.FILES['p_img']
+        price = request.POST['price']
+
+        auth=Author.objects.get(id=author_name)
+      
+        
+        new_product = Products(product_name = product_name ,
+        product_description = product_description , product_number = product_number ,
+        language = language,stock = current_stock ,author_id=auth.id,
+        image = product_image ,price = price, seller_id=request.session['seller'])
     
-def adbook_register(request):
-    return render(request,'adbook/register.html')
+        new_product.save()
+        msg = 'Product added succsessfully'
+    return render(request,'adbook/addbook.html',{'msg': msg,'data':seller_data,'author':auther})
+
+def adbook_updatestock(request):
+    seller_data = Seller.objects.get(id=request.session['seller'])
+    Product_data = Products.objects.filter(seller = request.session['seller'] )
+    if request.method == 'POST':
+        new_stock =request.POST['new_stock']
+        product_id = request.POST['productid']
+        new_price = request.POST['new_price']
+        product = Productsss.objects.get(id=product_id)
+        product.stock = product.stock + int(new_stock)
+        product.price = new_price
+        product.save()
+    context = {'prod_data':Product_data,
+                    'data':seller_data,
+                    }
+
+    return render(request,'adbook/updatestock.html',context)
+def adbook_order(request):
+    
+    product_order = Order.objects.filter(Customer = request.session['customer'])
+    return render(request,'adbook/order.html',{'order_list':product_order})
+    
+
+
+def adbook_catlog(request):
+    seller_products = Products.objects.filter(seller = request.session['seller'])
+    seller_data = Seller.objects.get(id=request.session['seller'])
+    context ={'products':seller_products,
+                'data': seller_data,
+                }
+    return render(request,'adbook/catlog.html',context)
+
+
+def get_stock(request):
+    name=request.POST['id']
+    
+    product=Products.objects.get(id=id)
+    product_name =product.product_name
+    current_stock = product.stock
+    price =product.price
+    product_id =product.id  
+    return JsonResponse({'p_name':product_name,'stock':current_stock,'p_id':product_id,'price':price})
+
+def adbook_proddet(request,pid):
+
+  
+    product_details = Products.objects.get(id = pid)# fetching singledata
+    
+    return render(request,'adbook/proddet.html',{'product':product_details})
+
+def adbook_delete(request,pid):
+    prod_item = Products.objects.get(id = pid)
+    prod_item.delete()
+    return redirect('adbook:catlog')
+
+
+ 
+def adbook_viewcust(request):
+
+    cust_details=Customer.objects.all()
+    return render(request,'adbook/viewcust.html',{'customer_list':cust_details})
+
+ 
+
+   

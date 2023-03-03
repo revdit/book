@@ -1,0 +1,190 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+
+{% block header %}
+{% endblock %}
+<style>
+  .div3{
+    background-color:gray;
+    height: 50px;
+    width: 100%;
+  }
+  .foot1{
+    padding-left: 60px;
+  }
+  .foot2{
+    padding-left: 60px;
+  }
+  img[alt='pic5']{
+    height: 20px;
+    width:20px;
+    padding-left: 10px;
+}
+img[alt='pic1']{
+    height: 45px;
+    width: 150px;
+    padding-left: 80px;
+}
+img[alt='pic2']{
+    height: 40px;
+    width: 20px;
+}
+.div4
+{
+  background-color: white; 
+  height: 300px;
+  width: 100%;
+
+}
+img[alt='pic4']{
+    height: 150px;
+    width: 300px;
+}
+.maindiv
+{
+  background-color: rgb(226, 223, 223);
+  height: 500%;
+  width: 100%;
+}
+#id1
+{
+  font-size: 30px;
+
+}
+#id1:hover{
+    color: red;
+}
+img[alt='pics1']{
+    height: 200px;
+    width: 200px;
+}
+
+</style>
+  </head>
+<body>
+
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#"> <b> CALICUT BOOKS </b> </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'common:commonhome' %}" ><img src="{% static 'image/lib.jpg'%}" alt="pic1"> </a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'common:commonhome' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'common:custlogin' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'common:custreg' %}">SignUp</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'adbook:aboutus' %}">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'adbook:aboutus' %}">Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'adbook:aboutus' %}">Customer</a>
+        </li>
+     
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+         
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+{% block content %}
+
+
+
+
+
+<div>
+  <div style="height: 500px;  width:100%;  background-color:bisque;">
+    <img src="{% static 'image/book2.jpg' %} ">
+      
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+<div class="div3">
+</div>
+<div class="div4">
+
+  <img src="{% static 'image/libfoot.png'%}" alt="pic4">
+  <img src="{% static 'image/litfoot.png'%}" alt="pic4">
+  <img src="{% static 'image/footfirst.png'%}" alt="pic4">
+  <img src="{% static 'image/footsec.png'%}" alt="pic4">
+</div>
+<div><hr>
+  <table>
+    <tr>
+      <td class="foot1" style="padding-left: 400px;">Hours & Store Info  | Contact Us | Privacy Policy | Return Policy | Help </td>
+    
+       <td rowspan="4"><img src="{% static 'image/lib.jpg'%}" alt="pic1"> <b>CALICUT BOOKS</b></td> 
+
+      </tr>
+      <tr>
+        <td class="foot1" style="padding-left: 400px;">Calicut Books Kerala Kozhikode Pantheerankave near Police station</td>
+      </tr>
+      <tr>
+        <td class="foot1" style="padding-left: 500px;">Copyright @ Calicut BookShop</td>
+       </tr>
+       <tr>
+        <td class="foot1" style="padding-left: 400px;">If you need assistance with this website, please contact us.</td>
+       </tr>
+  </table>
+</div>
+</body>
+</html>

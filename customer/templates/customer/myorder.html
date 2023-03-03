@@ -1,0 +1,50 @@
+{% extends 'customer/userhome.html' %}
+{% load static %}
+{% block name %}
+ <h4 > Welcome {{data.customer_name|title}}
+</h4>
+   
+{% endblock %}
+{% block content %}
+<div class="col-md-10 mt-3">
+
+
+
+
+  <table class="table table-dark table-striped text-center">
+    <tr>
+      <th>Sl.No</th>
+      <th> CustomerName </th>
+      <th>ProductName</th>
+      <th>ProductImage</th>
+      <th id="price">Price</th>
+     <th>Status</th>
+      <th>Action</th>
+      
+
+
+    </tr>
+    {% for order in order_list %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{orde.Customer.customer_name}}</td>
+      <td>{{order.Product.product_name}}</td>
+      <td>
+        <img src=" {{order.Product.image.url}}" style="height: 50px; width: 50px;" class="rounded" alt="...">
+      </td>
+  
+      <td>{{order.Product.price}}</td>
+     
+      
+         
+    </tr>
+
+   {% endfor %}
+  </table>
+
+  
+</div>
+
+
+ 
+  {% endblock %}

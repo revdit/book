@@ -1,0 +1,55 @@
+.div3{
+    background-color:gray;
+    height: 50px;
+    width: 100%;
+  }
+  .foot1{
+    padding-left: 60px;
+  }
+  .foot2{
+    padding-left: 60px;
+  }
+  img[alt='pic5']{
+    height: 20px;
+    width:20px;
+    padding-left: 10px;
+}
+img[alt='pic1']{
+    height: 10px;
+    width: 150px;
+    padding-left: 80px;
+}
+img[alt='pic2']{
+    height: 40px;
+    width: 20px;
+}
+.div4
+{
+  background-color: white; 
+  height: 300px;
+  width: 100%;
+
+}
+img[alt='pic4']{
+    height: 150px;
+    width: 300px;
+}
+.maindiv
+{
+  background-color: rgb(226, 223, 223);
+  height: 500%;
+  width: 100%;
+}
+
+#id1
+{
+  font-size: 30px;
+
+}
+#id1:hover{
+    color: red;
+}
+img[alt='pics1']{
+    height: 200px;
+    width: 200px;
+}
