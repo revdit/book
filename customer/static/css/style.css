@@ -94,6 +94,11 @@ label {
     border-radius: 5px;
     font-weight: 500;
 }
+.card1{
+    height: 200px;
+    width:300px;
+    background-color: burlywood;
+}
 /* making nav bar responsive */
 
 @media(max-width:830px){

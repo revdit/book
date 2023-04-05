@@ -9,7 +9,7 @@
     <div class="col-sm-10">
         <div class="row">
             <div class="col-sm-7 m-auto mt-5">
-                <div class="card shadow border">
+                <div class="card shadow border" style="background-color:burlywood">
                     <div class="card-body w-100">
                         <h3>Profile</h3>
                         <form method="POST">
@@ -18,7 +18,7 @@
                                
                                 <div class="col-md-12 mb-4">
                                   <div class="form-outline">
-                                    <input type="text" id="form3Example1m" name="c_name"class="form-control form-control-lg" />
+                                    <input type="text" id="form3Example1m"value="{{data.customer_name}}" name="c_name"class="form-control form-control-lg" />
                                     <label class="form-label" for="form3Example1m">Name</label>
                                   </div>
                                 </div>
@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="col-md-12 mb-4">
                                   <div class="form-outline">
-                                    <input type="text" id="form3Example1n" name="c_address" class="form-control form-control-lg" />
+                                    <input type="text" id="form3Example1n"value="{{data.address}}"name="c_address" class="form-control form-control-lg" />
                                     <label class="form-label" for="form3Example1n">Address</label>
                                   </div>
                                 </div>
@@ -35,7 +35,7 @@
                               <div class="row">
                                 <div class="col-md-12 mb-4">
                                   <div class="form-outline">
-                                    <input type="text" id="form3Example1m1"name="c_phone" class="form-control form-control-lg" />
+                                    <input type="text" id="form3Example1m1" value="{{data.phone_number}}"name="c_phone" class="form-control form-control-lg" />
                                     <label class="form-label"  for="form3Example1m1">Phonenumber</label>
                                   </div>
                                 </div>
@@ -65,7 +65,7 @@
                               </div>
                                 
                               <div class="form-outline mb-4">
-                                <input type="text" id="form3Example97" name="c_email"class="form-control form-control-lg" />
+                                <input type="text" id="form3Example97" value="{{data.email_address}}" name="c_email"class="form-control form-control-lg" />
                                 <label class="form-label" for="form3Example97">Email ID</label>
                               </div>
                               <div class="form-outline mb-4">
@@ -82,4 +82,5 @@
             </div>
         </div>
     </div>
+  </div>
 {% endblock %}

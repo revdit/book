@@ -28,8 +28,9 @@
                   <div class="row">
                     <div class="col-md-12 mb-4">
                       <div class="form-outline">
-                        <input type="text" id="form3Example1m" name="c_name"class="form-control form-control-lg" />
+                        <input type="text" id="name" name="c_name"class="form-control form-control-lg" />
                         <label class="form-label" for="form3Example1m">Name</label>
+                        <span id="name_sp"></span>
                       </div>
                     </div>
                 </div>
@@ -37,16 +38,18 @@
                 <div class="row">
                     <div class="col-md-12 mb-4">
                       <div class="form-outline">
-                        <input type="text" id="form3Example1n" name="c_address" class="form-control form-control-lg" />
+                        <input type="text" id="address" name="c_address" class="form-control form-control-lg" />
                         <label class="form-label" for="form3Example1n">Address</label>
+                        <span id="add_sp"></span>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12 mb-4">
                       <div class="form-outline">
-                        <input type="text" id="form3Example1m1"name="c_phone" class="form-control form-control-lg" />
+                        <input type="text" id="phone"name="c_phone" class="form-control form-control-lg" />
                         <label class="form-label"  for="form3Example1m1">Phonenumber</label>
+                        <span id="ph"></span>
                       </div>
                     </div>
                       
@@ -55,35 +58,41 @@
                     <h6 class="mb-0 me-4">Gender: </h6>
   
                     <div class="form-check form-check-inline mb-0 me-4">
-                      <input class="form-check-input" type="radio" name="c_gender" id="femaleGender"
+                      <input class="form-check-input" type="radio" name="c_gender" id="female"
                         value="femail" />
                       <label class="form-check-label" for="femaleGender">Female</label>
+                      <span id="female_sp" ></span>
                     </div>
   
                     <div class="form-check form-check-inline mb-0 me-4">
-                      <input class="form-check-input" type="radio" name="c_gender" id="maleGender"
+                      <input class="form-check-input" type="radio" name="c_gender" id="male"
                         value="male" />
                       <label class="form-check-label" for="maleGender">Male</label>
+                      <span id="male_sp" ></span>
                     </div>
   
                     <div class="form-check form-check-inline mb-0">
-                      <input class="form-check-input" type="radio" name="c_gender" id="otherGender"
+                      <input class="form-check-input" type="radio" name="c_gender" id="other"
                         value="option3" />
                       <label class="form-check-label" for="otherGender">Other</label>
+                      <span id="oth_sp" ></span>
                     </div>
   
                   </div>
                     
                   <div class="form-outline mb-4">
-                    <input type="text" id="form3Example97" name="c_email"class="form-control form-control-lg" />
+                    <input type="email" id="email" name="c_email"class="form-control form-control-lg" />
                     <label class="form-label" for="form3Example97">Email ID</label>
+                    <span id="email_error"></span>
                   </div>
                   <div class="form-outline mb-4">
-                    <input type="password" id="form3Example97" name="c_password"class="form-control form-control-lg" />
+                    <input type="password" id="password" name="c_password"class="form-control form-control-lg" />
                     <label class="form-label" for="form3Example97">Password</label>
+                    <span id="pass_sp" ></span>
                   </div>
                   <div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit"id="sub" class="btn btn-primary">Submit</button>
+                    <span id="sub_sp"></span>
                   </div>
                   <div class="d-flex justify-content-end pt-3">
                     <p>Already have an account?
@@ -100,4 +109,95 @@
       </div>
     </div>
   </section>
+
+
+<script>
+  $('#email').change(function(){
+    $.ajaxSetup({  
+    headers: {
+      "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val() 
+    }
+    })
+
+    $.ajax({
+
+        url:'{% url "common:email_exist" %}', 
+        type:'POST', 
+        
+        data:{
+            email:$(this).val() 
+        },
+        success:function(response){
+            var email_error = $('#email_error')
+            var email = $('#email')
+
+
+            if(response.status == true){
+                $('#email_error').html('Email already exist').css('color','red')
+                $('#email').css('border','2px solid red')
+            }
+            else{
+                $('#email_error').html('Success').css('color','green')
+                $('#email').css('border','2px solid green')
+
+
+            }
+
+            console.log(response.status)
+        }
+
+    })
+
+})
+
+</script>
+<script>
+  $(document).ready(function()
+  {
+      $('#sub').click(function()
+      {
+          var name1 = $('#name')
+          var add1 = $('#address')
+          var ph1 = $('#ph')
+          var female1 = $('#female')
+          var male1 = $('#male')
+          var other1 = $('#other')
+          var email1 = $('#email')
+          var pass1 = $('#password')
+          if(name1.val() == ''){
+              $('#name_sp').html('please enter the name').css('color','red')
+              $('#name').css('border','2px solid red')
+          }
+         
+          if(add1.val() == ''){
+              $('#add_sp').html('please enter the Address').css('color','red')
+              $('#address').css('border','2px solid red')
+          }
+          if(ph1.val() == ''){
+              $('#ph_sp').html('please enter the Phone number').css('color','red')
+              $('#phone').css('border','2px solid red')
+          }
+          if(male1.checked==false && female1.checked==false &&other1.checked==false){
+              $('#female_sp').html('please enter the gender').css('color','red')
+              $('#fename').css('border','2px solid red')
+          }
+     
+         
+          if(email1.val() == ''){
+              $('#email_error').html('please enter the emil').css('color','red')
+              $('#email').css('border','2px solid red')
+          }
+     
+         
+          if(pass.val() == ''){
+              $('#pass_sp').html('please enter the password').css('color','red')
+              $('#password').css('border','2px solid red')
+          }
+     
+     
+     
+      })
+  })
+</script>
+
   {% endblock %}

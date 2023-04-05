@@ -12,9 +12,10 @@
                 {{ msg }}
                  <div class="mb-3">
                 <label for="exampleFormControlInput1"class="form-label">Author Name</label>
-                <input type="text" name="a_name"  class="form-control"id="productno">
+                <input type="text" name="a_name"  class="form-control"id="author">
+                <span id="author_error"></span>
                </div>        
-                
+               
             <div class="mb-3">
                 <label for="formfile"class="form-label">Author image</label>
                 <input type="file" name="a_img"  class="form-control"id="exampleFormControlInput1">
@@ -29,4 +30,44 @@
 
     </div>
 </div>
+
+
+<script>
+    $('#author').change(function(){
+      $.ajaxSetup({  
+      headers: {
+        "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val() 
+      }
+      })
+  
+      $.ajax({
+  
+          url:'{% url "adbook:author_exist" %}', 
+          type:'POST', 
+          
+          data:{
+              author:$(this).val() 
+          },
+          success:function(response){
+          
+  
+              if(response.status == true){
+                  $('#author_error').html('Author already exist').css('color','red')
+                  $('#author').css('border','2px solid red')
+              }
+              else{
+                  $('#author_error').html('Success').css('color','green')
+                  $('#author').css('border','2px solid green')
+  
+  
+              }
+            
+  
+              console.log(response.status)
+            }
+  
+      })
+  
+    })
+   </script>
 {% endblock %}

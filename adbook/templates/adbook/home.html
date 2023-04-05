@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/book.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -81,15 +82,16 @@ img[alt='pics1']{
 <nav>
   <div class="container navbar">
     <div class="logo">
-     
-      <a href="#">BookStore</a> 
+      <label for="checking">
+        <input type="checkbox" id="checking">
+        <i class="fas fa-bars"></i>
+      </label>
+      <a href="{% url 'adbook:home' %}">BookStore</a> 
     </div>
     
     <div class="menu">
       <input type="checkbox" id="checking">
-      <label for="checking">
-        <i class="fas fa-bars"></i>
-      </label>
+      
       <ul>
       {% comment %} <li> <a href="{% url 'adbook:home' %}"></a></li> {% endcomment %}
 

@@ -83,7 +83,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'NAME': 'book_shop',
         # 'NAME': 'bookshop1',
-        'NAME': 'bookshop_new',
+        # 'NAME': 'bookshop_new',
+        'NAME': 'bookstore_new',
+
         'USER':'postgres',
         'PASSWORD':'root',
         'HOST':'localhost',
@@ -122,6 +124,9 @@ USE_I18N = True
 USE_TZ = True
 
 
+RAZORPAY_KEY_ID ='rzp_test_kEK1aSRc2RrRUA'
+RAZORPAY_KEY_SECRET = '8aOkgb8BWBesmsKnCjugCao3'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -140,3 +145,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'bcjislyrpdyblcsh'
 EMAIL_USE_TLS = True
+
+

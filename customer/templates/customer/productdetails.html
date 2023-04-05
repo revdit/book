@@ -1,47 +1,120 @@
 {% extends 'customer/userhome.html' %}
 {% load static %}
 {% block name %}
- <h4 > Welcome {{data.customer_name|title}}
+<h4> Welcome {{data.customer_name|title}}
 </h4>
-   
+
 {% endblock %}
 {% block content %}
 
-<div class="cont col-sm-5">
-    <div class="row">
-        <div class="col md-5">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{{product.image.url}}"  alt="..." style="width:200px;height:200px;">
-                  </div>
-                </div>
-            </div>
-            </div>
 
-<div class="col-md-5">
-<h2>{{product.product_name}}</h2>
-<form action="" method="POST">
-  {% csrf_token %}
+<div class="row">
+  <div class="col md-5" style="padding-left:200px;">
+    
+          <img src="{{product.image.url}}" alt="..." style="width:200px;height:200px; padding-top:50px;">
+      
+  </div>
 
-<input type="hidden" value="{{product.id}}"name="pid" id="">
-<p>Product Number:{{product.product_number}}</p>
-<p>{{product.product_description}}</p>
-<p class="price">RS {{product.price}}</p>
-<p><b>Current Stock:{{product.stock}}</b></p>
-<div>
-<button type="submit" class="btn btn-primary cart"> Add to cart</button>
-<a href="{% url 'customer:checkout'%}" class="btn btn-primary">Buy Now</a>
+  <div class="col-md-6">
+    <h2>{{product.product_name}}</h2>
+    <form action="" method="POST">
+      {% csrf_token %}
+
+      <input type="hidden" value="{{product.id}}" name="pid" id="">
+      <p>Product Number:{{product.product_number}}</p>
+      <p>{{product.product_description}}</p>
+      <p class="price">RS {{product.price}}</p>
+      <p><b>Current Stock:{{product.stock}}</b></p>
+      <div>
+        <input type="number" name="qty">
+        <button type="submit" class="btn btn-primary cart"> Add to cart</button>
+        <a href="{% url 'customer:checkout'%}" class="btn btn-primary">Buy Now</a>
+      </div>
+      <div class="col-md-2">
+        {% if wish %}
+        
+        <a href="{% url 'customer:removefromwishlist' product.id %}?page=product" class="btn btn-white w-50 ms-3" id="hrt">
+          <i class="fas fa fa fa-heart" att="0" style="color: rgb(253, 3, 3)"></i>
+        </a>
+        {% else %}
+        <a href="{% url 'customer:addtowishlist' product.id %}" class="btn btn-white w-50 ms-3" id="hrt">
+          <i class="fas fa fa fa-heart" att="0" style="color: grey"></i>
+        </a>
+        {% endif %}
+        
+      <p class="alert">{{msg}}</p>
+
+    </form>
+  </div>
 </div>
-<div class="col-md-2"> <a href="{% url 'customer:addtowishlist' product.id %}" class="btn btn-white w-50 ms-3" id="hrt">
-  <i class="hr fa-lg fa-solid fa-heart" id="iconhrt"></i>
-</a></div>
-<p class="alert">{{msg}}</p>
-
-</form>
-</div>
-</div>
 </div>
 
 
-{% endblock %} 
+
+
+
+
+<!-- <script>
+  $(document).on('click', '.favourite-product', function(e) {
+
+e.preventDefault();
+var selector = $(this)
+var data_id = $(this).data("id") //to get data attr
+var likeText = $(this).data("text"); //get text
+var trim = $.trim(likeText)
+console.log(data_id + " " + likeText)
+/*$.ajax({
+  url: $(this).attr('href'),
+  type: 'GET',
+  data: {
+    'product': data_id //pass data_id
+  },
+  success: function(response) {*/
+//compare
+if (trim === 'add') {
+  //change i colour
+  selector.find("i").css({
+    "color": "red"
+  });
+  //change text
+  selector.data("text", "remove")
+} else {
+  ///same as above
+  selector.find("i").css({
+    "color": "#eee"
+  });
+  selector.data("text", "add")
+}
+/* },
+  error: function(response) {
+    alert("error");
+  }
+});*/
+});
+</script>
+ -->
+ <script>
+  $('.fas').click(function() {
+        var val = $(this).val();
+
+        $.ajax({
+                    url: "updatefav.php",
+                    type: "POST",
+                     data: {
+                id:val
+            },
+
+                    success: function(data){
+                if (data == '1') {
+                  $('.fas').css('color', 'red');
+                }else{
+                  $('.fas').css('color', 'grey');
+                 }
+
+                    }        
+               });
+
+
+    });
+</script>
+{% endblock %}

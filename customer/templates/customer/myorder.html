@@ -25,9 +25,10 @@
 
     </tr>
     {% for order in order_list %}
+     {% comment %} {% for order in orders %} {% endcomment %}
     <tr>
       <td>{{forloop.counter}}</td>
-      <td>{{orde.Customer.customer_name}}</td>
+      <td>{{order.Customer.customer_name}}</td>
       <td>{{order.Product.product_name}}</td>
       <td>
         <img src=" {{order.Product.image.url}}" style="height: 50px; width: 50px;" class="rounded" alt="...">

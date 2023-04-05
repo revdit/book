@@ -19,8 +19,8 @@
                </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1"class="form-label">Book Name</label>
-                    <input type="name" name="p_name" class="form-control"id="exampleFormControlInput1">
-
+                    <input type="name" name="p_name" class="form-control"id="bookname">
+                    <span id="book_error"></span>
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1"class="form-label">Book Description</label>
@@ -75,7 +75,44 @@
 </div>
 
 
-
+<script>
+    $('#bookname').change(function(){
+      $.ajaxSetup({  
+      headers: {
+        "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val() 
+      }
+      })
+  
+      $.ajax({
+  
+          url:'{% url "adbook:book_exist" %}', 
+          type:'POST', 
+          
+          data:{
+              bookname:$(this).val() 
+          },
+          success:function(response){
+          
+  
+              if(response.status == true){
+                  $('#book_error').html('Book already exist').css('color','red')
+                  $('#bookname').css('border','2px solid red')
+              }
+              else{
+                  $('#book_error').html('Success').css('color','green')
+                  $('#bookname').css('border','2px solid green')
+  
+  
+              }
+            
+  
+              console.log(response.status)
+            }
+  
+      })
+  
+    })
+</script>
 
 
 {% endblock %}

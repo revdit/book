@@ -11,7 +11,9 @@
 
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 {% block header %}
@@ -72,13 +74,22 @@ img[alt='pics1']{
     height: 200px;
     width: 200px;
 }
+nav .collapse navbar-collapse ul li a:hover{
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 500;
+}
 
 </style>
   </head>
 <body>
 
   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-orange" style="background-color:orange;">
   <!-- Container wrapper -->
   <div class="container-fluid">
     <!-- Toggle button -->
@@ -101,7 +112,7 @@ img[alt='pics1']{
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#"> <b> CALICUT BOOKS </b> </a>
+          <a class="nav-link" href="#"> <b> BOOKSTORE </b> </a>
         </li>
         <li class="nav-item">
           <a href="{% url 'common:commonhome' %}" ><img src="{% static 'image/lib.jpg'%}" alt="pic1"> </a>
@@ -109,7 +120,7 @@ img[alt='pics1']{
 
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'common:commonhome' %}">Home</a>
+          <a class="nav-link" href="{% url 'common:commonhome' %}" >Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'common:custlogin' %}">Login</a>
@@ -120,7 +131,17 @@ img[alt='pics1']{
         <li class="nav-item">
           <a class="nav-link" href="{% url 'adbook:aboutus' %}">About us</a>
         </li>
-     
+        <div class="dropdown ">
+          <button class="btn btn-white dropdown-toggle h-100" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown">
+            <i class="fa-solid fa-user w-50 h-100"></i>
+            
+          </button>
+  
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="{% url 'common:custlogin' %}">Customer</a></li>
+            <li><a class="dropdown-item" href="{% url 'common:adminlog' %}">Admin</a></li>
+          </ul>
       </ul>
       <!-- Left links -->
     </div>
@@ -131,16 +152,35 @@ img[alt='pics1']{
 </nav>
 <!-- Navbar -->
 {% block content %}
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="{% static 'image/bookstore3.jpg'%}" alt="pic3" class="d-block w-100" alt="pic3">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="{% static 'image/bookstore4.jpg'%}" class="d-block w-100" alt="pic3">
+    </div>
 
+    <div class="carousel-item">
+      <img src="{% static 'image/bookstore5.jpg'%}" class="d-block w-100" alt="pic3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
 
 
 
     
       <div style="height: auto;  width:100%;  background-color:bisque;">
-        <div>
-          <img src="{% static 'image/bookstore.jpg'%}" alt=""style="width:100%;"class="card-img-top">
-        </div>
+        
         <h3 style="padding-top: 20px; ">English Stories& Novels</h3>
 
          
@@ -272,21 +312,13 @@ img[alt='pics1']{
 
 <div class="div3">
 </div>
-<div class="div4">
-
-  <img src="{% static 'image/libfoot.png'%}" alt="pic4">
-  <img src="{% static 'image/litfoot.png'%}" alt="pic4">
-  <img src="{% static 'image/footfirst.png'%}" alt="pic4">
-  <img src="{% static 'image/footsec.png'%}" alt="pic4">
-
-
-</div><hr>
+<hr>
 <div class="div6">
   <table>
     <tr>
       <td class="foot1" style="padding-left: 400px;">Hours & Store Info  | Contact Us | Privacy Policy | Return Policy | Help </td>
     
-       <td rowspan="4"><img src="{% static 'image/lib.jpg'%}" alt="pic1"> <b>CALICUT BOOKS</b></td> 
+       <td rowspan="4"><img src="{% static 'image/lib.jpg'%}" alt="pic1"> <b>BOOKSTORE</b></td> 
 
       </tr>
       <tr>

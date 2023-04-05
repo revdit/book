@@ -15,6 +15,9 @@ urlpatterns = [
     path('delete/<int:pid>',views.adbook_delete,name='delete'),
     path('viewcust',views.adbook_viewcust,name='viewcust'),
     path('get_stock',views.get_stock,name='get_stock'),
+    path('author_exist',views.author_exist,name='author_exist'),
+    path('book_exist',views.book_exist,name='book_exist'),
+
     
 
     # path('get_author',views.get_author,name='get_author'),

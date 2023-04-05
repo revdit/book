@@ -1,8 +1,8 @@
 {% extends 'customer/userhome.html' %}
 {% load static %}
 {% block name %}
- <h4 > Welcome {{data.customer_name|title}}
-</h4>
+ <h4 > Welcome {{data.customer_name|title}}</h4>
+
    
 {% endblock %}
 {% block content %}
@@ -29,11 +29,12 @@
       </td>
       <td>{{cart.Product.product_name}}</td>
       <td>{{cart.Product.price}}</td>
-      <td>
+      {% comment %} <td>
         <input type="number" value="1" max="{{cart.Product.stock}}"
           onchange="addEventListener('change',calculateTotal(event))">
-      </td>
-      <td>{{cart.Product.price}}</td>
+      </td> {% endcomment %}
+      <td>{{cart.quantity}}</td>
+      <td>{{cart.total}}</td>
       <td><button class="btn btn-danger">
           <a href="{% url 'customer:remove_cart' cart.Product.id %}"
             style="color: aliceblue; text-decoration: none;">REMOVE</a>
@@ -44,20 +45,34 @@
     </tr>
 
    {% endfor %}
+
+   <!-- <tr>
+    <td>
+      Grand total is {{ grand_total}}
+    </td>
+   </tr> -->
   </table>
 
-  <div style="padding-left: 800px;">
-    <button type="button" class="btn btn-dark"> 
-      Grand Total</a></button>
+  <div>
+    <button type="button" class="btn btn-warning"> 
+      Grand Total</a> <h3>RS:{{ grand_total}}</h3></button>
+    
+  
+     
+      
 
     </div>
-    <br>
+   
     <div style="padding-left: 800px;">
-    <button type="button" class="btn btn-dark"> <a href="{% url 'customer:checkout'%}"
-      style="color: aliceblue; text-decoration: none;">Check Out</a></button>
+      <a href="{% url 'customer:checkout' %}" type="button" class="btn btn-dark" 
+    
+      style="color: aliceblue; text-decoration: none;"> Check Out</a>
+    <!-- <button type="button" class="btn btn-dark" 
+    
+      style="color: aliceblue; text-decoration: none;">  Check Out</button> -->
 
   </div>
-  
+  <br>
 </div>
 
 
@@ -72,6 +87,102 @@
       tdlist[11].innerHTML = total
       console.log(e.target.parentElement.parentElement.childNodes)
 
+    }
+
+    // success: function(response) {									
+		// 								console.log(response.status)
+		// 								if(response.status == true)
+		// 								{
+		// 									sub = qty * price
+		// 								$('#total_'+id).text("Rs:"+sub)
+		// 								$('#grand_total').text("Rs:"+response.data)
+		// 								$('#out_'+id).text("")
+		// 								}
+		// 								else if(response.status == false){
+		// 									$('#out_'+id).css('color','red')
+		// 									$('#out_'+id).text("out of stock")
+
+		// 								}	
+    //               }
+
+    function pay(){
+      ammount = $("#total_ammount").val()
+      console.log(ammount);
+      $.ajax({
+        url:'/customer/orderproduct',
+        type:'POST',
+        data:{
+          totalprice:ammount * 100,
+        },
+        success:function(response){
+          console.log("payment_id -" + response.id);
+          var options ={
+            "key":"rzp_test_jznmHCFBf6ZMUd",
+            "amount":response.ammount,
+            "currency":"INR",
+            "name": "Cybersquare",
+            "description":"Place order",
+            "id":"1234",
+            "order_id": response.id,
+            "handler":function(response){
+              console.log(response.razorpay_payment_id);
+              console.log(response.razorpay_order_id);
+              console.log(response.razorpay_signature)
+              updatePayment()
+            },
+            "theme":{
+              "color":"#3399cc"
+            }
+      
+          };
+          var rzp1 = new Razorpay(options);
+          rzp1.on('payment.failed',function(response){
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.payment_id);
+          });
+          rzp1.open();
+        }
+
+      })
+    }
+    function updatePayment(){
+      $.ajax({
+        url:'/ecom/updatepayment',
+        type:'get',
+        success:function(response){
+          alert("your order placed successfully")
+          window.location.reload();
+        }
+      })
+    }
+    function update_quantity(quanity,id,price,priceid){
+      totalprice = parseInt(quanity.value);
+      $("#"+priceid +"").val(totalprice);
+      $ajax({
+        url:'/ecom/updateQuantity',
+        type:'get',
+        data:{
+          quantity:parseInt(quantity.value),
+          id:id,
+        },
+        success:function(response){
+          console.log(response.price);
+          $("#total_ammount").val(response.price);
+        }
+      })
+    }
+    function load_data(){
+      $.ajax({
+        url:'/ecom/viewBag',
+        type:'POST',
+        success:function(response){
+          
+        }
+      })
     }
 
   </script>

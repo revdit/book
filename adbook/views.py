@@ -70,6 +70,7 @@ def adbook_addbook(request):
     return render(request,'adbook/addbook.html',{'msg': msg,'data':seller_data,'author':auther})
 
 def adbook_updatestock(request):
+    msg = ''
     seller_data = Seller.objects.get(id=request.session['seller'])
     Product_data = Productsss.objects.filter(seller = request.session['seller'] )
     if request.method == 'POST':
@@ -80,8 +81,11 @@ def adbook_updatestock(request):
         product.stock = product.stock + int(new_stock)
         product.price = new_price
         product.save()
+        msg = 'stock Update succsessfully'
+
     context = {'prod_data':Product_data,
                     'data':seller_data,
+                    'msg': msg,
                     }
 
     return render(request,'adbook/updatestock.html',context)
@@ -102,7 +106,7 @@ def adbook_catlog(request):
 
 
 def get_stock(request):
-    name=request.POST['id']
+    id=request.POST['id']
     
     product=Productsss.objects.get(id=id)
     product_name =product.product_name
@@ -130,6 +134,19 @@ def adbook_viewcust(request):
     cust_details=Customer.objects.all()
     return render(request,'adbook/viewcust.html',{'customer_list':cust_details})
 
+def author_exist(request):
+    author = request.POST['author']
+
+    status = Author.objects.filter(author_name = author).exists()
+
+    return JsonResponse({'status':status})
+
+def book_exist(request):
+    books = request.POST['bookname'] 
+
+    status = Productsss.objects.filter(product_name = books).exists()
+
+    return JsonResponse({'status':status})
  
 
    

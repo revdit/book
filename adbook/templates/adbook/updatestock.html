@@ -4,15 +4,16 @@
     <div class="col-sm-10">
         <div class="row">
             <div class="col-sm-7 m-auto mt-5">
-                <div class="card shadow border">
+                <div class="card shadow border" style="background-color:burlywood;">
                     <div class="card-body w-100">
                         <h3>UPDATE STOCK</h3>
                         <form method="POST">
                             {% csrf_token %}
-                            <input type="number" id="p_id" name="productid">
+                        
+                            
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Product name</label>
-                                <select id="productno" class="form-select" aria-label="Default select example">
+                                <select id="productno" name="productid"class="form-select" aria-label="Default select example">
                                     <option  selected>Select a  Product to update</option>
                                     {% for product in prod_data %}
                                     <option value="{{product.id}}">{{product.product_name}}</option>

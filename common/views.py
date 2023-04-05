@@ -44,7 +44,7 @@ def common_custreg(request):
       address =c_address , phone_number = c_number ,
          gender = c_gender,   email_address = c_email ,  cust_password = c_pass)
         new_customer.save()
-        msg ='Customer Registerion Successfully'
+        msg ='Customer Registration Successfully'
     return render(request,'common/custreg.html',{'msg': msg})
 
 def common_adminlog(request):
@@ -67,3 +67,11 @@ def common_adminreg(request):
 def common_master(request):
     
     return render(request,'common/master.html')
+
+
+def email_exist(request):
+    email = request.POST['email'] # here email is the key inside json
+
+    status = Customer.objects.filter(email_address = email).exists()
+
+    return JsonResponse({'status':status})
